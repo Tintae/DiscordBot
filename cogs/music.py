@@ -8,6 +8,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.db = SongPlaysDatabase()
+        self.queues = {}  # Initialize the queues dictionary
 
     def check_queue(self, ctx, server_id):
         if self.queues.get(server_id):
@@ -37,6 +38,9 @@ class Music(commands.Cog):
             await ctx.send("🚫 You need to be in a voice channel to play music.")
             return
 
+        if not ctx.voice_client or not ctx.voice_client.is_connected():
+            await ctx.author.voice.channel.connect()
+
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(f"ytsearch:{query}", download=False)
             url = info['entries'][0]['formats'][0]['url']
@@ -58,12 +62,12 @@ class Music(commands.Cog):
     async def show_queue(self, ctx):
         server_id = ctx.guild.id
         if server_id in self.queues and self.queues[server_id]:
-            queue_embed = discord.Embed(title="Music Queue", description="", color=discord.Color.blue())
+            queue_embed = discord.Embed(title="Music Queue", color=discord.Color.blue())
             for i, source in enumerate(self.queues[server_id], start=1):
-                queue_embed.description += f"{i}. Song {i}\n"
+                queue_embed.add_field(name=f"{i}.", value=f"Song {i}", inline=False)
             await ctx.send(embed=queue_embed)
         else:
             await ctx.send("The queue is currently empty.")
 
-def setup(bot):
+async def setup(bot):  # Missing 'self' corrected
     bot.add_cog(Music(bot))
