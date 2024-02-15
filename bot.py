@@ -1,6 +1,7 @@
 from discord.ext import commands
 from utils.settings import TOKEN, intents
 
+
 async def main():
     # Create the bot instance
     bot = commands.Bot(command_prefix='!', intents=intents)
@@ -16,6 +17,8 @@ async def main():
     print("Shutting down...")
     await bot.close()
 
+
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(main())  # Correct usage of asyncio.run for Python 3.10 and newer

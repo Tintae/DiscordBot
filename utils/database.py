@@ -1,8 +1,10 @@
 import sqlite3
 
+
 class InvalidUserIdError(Exception):
     """Raised when the provided user ID is not valid."""
     pass
+
 
 class SongPlaysDatabase:
     def __init__(self):

@@ -1,14 +1,22 @@
 from discord.ext import commands
 import discord
+import sqlite3
 from utils.database import SongPlaysDatabase
 
-class General(commands.Cog):
-    def __init__(self, bot, db):
-        self.bot = bot
-        self.db = db
 
+class General(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    async def setup(self, bot):
+        self.db = sqlite3.connect('database.db')  # Connect to the database here
+        bot.add_cog(General(bot))
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print(f"Logged in as {self.bot.user} (ID: {self.bot.user.id})")
     @commands.command(help="Shows how many songs a user has played.")
-    async def getplays(self, ctx, user: discord.Member=None):
+    async def getplays(self, ctx, user: discord.Member = None):
         user = user or ctx.author
         plays = self.db.get_plays(user.id)
         await ctx.send(f"{user.display_name} has played {plays} songs.")
@@ -36,10 +44,12 @@ class General(commands.Cog):
         else:
             cmd = self.bot.get_command(command)
             if cmd:
-                embed = discord.Embed(title=f"!{cmd.name}", description=cmd.help or "No description available.", color=discord.Color.green())
+                embed = discord.Embed(title=f"!{cmd.name}", description=cmd.help or "No description available.",
+                                      color=discord.Color.green())
                 await ctx.send(embed=embed)
             else:
                 await ctx.send("Command not found.")
+
 
 def setup(bot):
     db = SongPlaysDatabase()

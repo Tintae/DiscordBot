@@ -4,6 +4,7 @@ import yt_dlp
 from utils.settings import ydl_opts
 from utils.database import SongPlaysDatabase
 
+
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -68,6 +69,7 @@ class Music(commands.Cog):
             await ctx.send(embed=queue_embed)
         else:
             await ctx.send("The queue is currently empty.")
+
 
 async def setup(bot):  # Missing 'self' corrected
     bot.add_cog(Music(bot))
