@@ -1,0 +1,30 @@
+2024-02-15 20:46:01,832 - INFO - logging in using static token
+2024-02-15 20:46:02,551 - INFO - Shard ID None has connected to Gateway (Session ID: b7f1300243ca0e9df16523ebc622bb10).
+2024-02-15 20:46:04,568 - ERROR - Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\liam\PycharmProjects\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+TypeError: setup_bot.<locals>.on_ready() missing 1 required positional argument: 'self'
+2024-02-15 20:49:39,952 - INFO - logging in using static token
+2024-02-15 20:49:40,893 - INFO - Shard ID None has connected to Gateway (Session ID: 317d8c20d4744c84546a33de4cac07c2).
+2024-02-15 20:49:42,906 - ERROR - Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\liam\PycharmProjects\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+TypeError: setup_bot.<locals>.on_ready() missing 1 required positional argument: 'self'
+2024-02-15 20:53:25,722 - INFO - logging in using static token
+2024-02-15 20:53:26,522 - INFO - Shard ID None has connected to Gateway (Session ID: 4423c8d57b57204ff89013cf1887ff1c).
+2024-02-15 20:53:28,531 - ERROR - Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\liam\PycharmProjects\DiscordBot\.venv\Lib\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+TypeError: setup_bot.<locals>.on_ready() missing 1 required positional argument: 'self'
+2024-02-15 20:53:57,214 - INFO - Connecting to voice...
+2024-02-15 20:53:57,214 - INFO - Starting voice handshake... (connection attempt 1)
+2024-02-15 20:53:57,336 - INFO - Voice handshake complete. Endpoint found newark4715.discord.media
+2024-02-15 20:54:06,265 - INFO - ffmpeg process 8028 successfully terminated with return code of 4294967274.
+2024-02-15 20:54:25,648 - INFO - Disconnecting from voice normally, close code 1000.
+2024-02-15 20:54:25,678 - INFO - The voice handshake is being terminated for Channel ID 1205275052266889316 (Guild ID 1205275048387285042)
