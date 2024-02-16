@@ -1,18 +1,13 @@
 from discord.ext import commands
 import discord
-import sqlite3
 from utils.database import SongPlaysDatabase
-
 
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.db = SongPlaysDatabase()
 
-    async def setup(self, bot):
-        self.db = sqlite3.connect('database.db')  # Connect to the database here
-        bot.add_cog(General(bot))
-
-    @commands.Cog.listener()
+    @commands.Cog.listener()  # Change: Add Cog.listener()
     async def on_ready(self):
         print(f"Logged in as {self.bot.user} (ID: {self.bot.user.id})")
     @commands.command(help="Shows how many songs a user has played.")
@@ -33,8 +28,8 @@ class General(commands.Cog):
         else:
             await ctx.send("No play data found.")
 
-    @commands.command(name='help', help="Shows help information for commands.")
-    async def help_command(self, ctx, *, command: str = None):
+    @commands.command(name='myhelp', help="Shows help information for commands.")
+    async def my_help_command(self, ctx, *, command: str = None):
         if command is None:
             embed = discord.Embed(title="Help", color=discord.Color.purple(), description="List of available commands:")
             for cmd in self.bot.commands:
@@ -51,6 +46,5 @@ class General(commands.Cog):
                 await ctx.send("Command not found.")
 
 
-def setup(bot):
-    db = SongPlaysDatabase()
-    bot.add_cog(General(bot, db))
+async def setup(bot):
+    await bot.add_cog(General(bot))

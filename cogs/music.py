@@ -71,5 +71,6 @@ class Music(commands.Cog):
             await ctx.send("The queue is currently empty.")
 
 
-async def setup(bot):  # Missing 'self' corrected
-    bot.add_cog(Music(bot))
+async def setup(bot):
+    await bot.add_cog(Music(bot))
+
